@@ -1,0 +1,26 @@
+# systemd unit: start the sensor script at boot and restart it if it crashes.
+#
+#   sudo cp crenature-sensor.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now crenature-sensor
+#   journalctl -u crenature-sensor -f      # follow the log
+#
+# Adjust User, the script path and the three environment values first.
+# The service must run as the user whose ~/.ssh/id_ed25519 is authorised on the PC.
+
+[Unit]
+Description=Crenature PIR sensor trigger
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=crenature
+Environment=CRENATURE_HOST=192.168.0.14
+Environment=CRENATURE_USER=exhibit
+Environment=CRENATURE_TASK=crenature
+ExecStart=/usr/bin/python3 -u /home/crenature/crenature-969p/pi/sensor_trigger.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
