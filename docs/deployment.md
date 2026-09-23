@@ -46,7 +46,7 @@ PIR 传感器 ──GPIO17──▶ Raspberry Pi 4B ──SSH(密钥)──▶ W
 ## 4. Windows 主机：运行环境
 
 ```powershell
-git clone https://github.com/<your-account>/crenature-969p.git C:\crenature-969p
+git clone https://github.com/XiaoJianyu219/crenature-969p.git C:\crenature-969p
 cd C:\crenature-969p
 python -m pip install -r requirements.txt
 python -m crenature --windowed --duration 20      # 先确认动画能在窗口里跑
@@ -124,7 +124,7 @@ schtasks /run /tn "crenature"     # 本机测试：应当弹出全屏动画
 
 ```bash
 sudo apt update && sudo apt install -y python3-gpiozero git
-git clone https://github.com/<your-account>/crenature-969p.git ~/crenature-969p
+git clone https://github.com/XiaoJianyu219/crenature-969p.git ~/crenature-969p
 cd ~/crenature-969p/pi
 
 # 先不接传感器，按回车模拟有人经过，确认 SSH 链路
